@@ -1,5 +1,6 @@
 ﻿using InsDeptDesktopApp.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -337,7 +338,50 @@ namespace InsDeptDesktopApp
             }
         }
 
+        private void btnSearchID_Click(object sender, EventArgs e)
+        {
+            dataGridViewFoundIns.DataSource = null;
+            if(int.TryParse(txtSearchId.Text, out int id))
+            {
+                HttpResponseMessage resultIns = client.GetAsync($"https://localhost:7167/api/Instructors/{id}").Result;
+                //HttpResponseMessage resultIns = client.GetAsync(ConfigurationManager.AppSettings["Instructors"]+$"/{id}").Result;
+                if (resultIns.IsSuccessStatusCode)
+                {
+                    List<Instructor> insList = new List<Instructor>();
+                    Instructor ins  = resultIns.Content.ReadAsAsync<Instructor>().Result;
+                    insList.Add(ins);
+                    dataGridViewFoundIns.DataSource = insList;
+                }
+            }
+            else
+            {
+                MessageBox.Show("ID must be a number");
+            }
+        }
 
+        private void btnSearchName_Click(object sender, EventArgs e)
+        {
+            dataGridViewFoundIns.DataSource = null;
+            try
+            {
+                string name = txtSearchName.Text; 
+                HttpResponseMessage resultIns = client.GetAsync($"https://localhost:7167/api/Instructors/{name}").Result;
+                //HttpResponseMessage resultIns = client.GetAsync(ConfigurationManager.AppSettings["Instructors"]+$"/{id}").Result;
+                if (resultIns.IsSuccessStatusCode)
+                {
+                    List<Instructor> insList = new List<Instructor>();
+                    Instructor ins = resultIns.Content.ReadAsAsync<Instructor>().Result;
+                    insList.Add(ins);
+                    dataGridViewFoundIns.DataSource = insList;
+                    if (ins == null)
+                        MessageBox.Show("No Instructors of this name found");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
 

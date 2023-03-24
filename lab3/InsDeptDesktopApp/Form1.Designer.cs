@@ -63,11 +63,19 @@
             this.txtNameDept = new System.Windows.Forms.TextBox();
             this.btnNewDept = new System.Windows.Forms.Button();
             this.dataGridViewDepts = new System.Windows.Forms.DataGridView();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnSearchName = new System.Windows.Forms.Button();
+            this.txtSearchName = new System.Windows.Forms.TextBox();
+            this.txtSearchId = new System.Windows.Forms.TextBox();
+            this.btnSearchID = new System.Windows.Forms.Button();
+            this.dataGridViewFoundIns = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.insPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInstructors)).BeginInit();
             this.deptPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDepts)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFoundIns)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -77,6 +85,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.insPage);
             this.tabControl1.Controls.Add(this.deptPage);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(1, -2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -411,6 +420,65 @@
             this.dataGridViewDepts.TabIndex = 1;
             this.dataGridViewDepts.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewDepts_RowHeaderMouseDoubleClick);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridViewFoundIns);
+            this.tabPage1.Controls.Add(this.txtSearchId);
+            this.tabPage1.Controls.Add(this.btnSearchID);
+            this.tabPage1.Controls.Add(this.txtSearchName);
+            this.tabPage1.Controls.Add(this.btnSearchName);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(790, 422);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Search Instructor";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnSearchName
+            // 
+            this.btnSearchName.Location = new System.Drawing.Point(391, 121);
+            this.btnSearchName.Name = "btnSearchName";
+            this.btnSearchName.Size = new System.Drawing.Size(160, 33);
+            this.btnSearchName.TabIndex = 0;
+            this.btnSearchName.Text = "Search by name";
+            this.btnSearchName.UseVisualStyleBackColor = true;
+            this.btnSearchName.Click += new System.EventHandler(this.btnSearchName_Click);
+            // 
+            // txtSearchName
+            // 
+            this.txtSearchName.Location = new System.Drawing.Point(241, 128);
+            this.txtSearchName.Name = "txtSearchName";
+            this.txtSearchName.Size = new System.Drawing.Size(100, 22);
+            this.txtSearchName.TabIndex = 1;
+            // 
+            // txtSearchId
+            // 
+            this.txtSearchId.Location = new System.Drawing.Point(241, 64);
+            this.txtSearchId.Name = "txtSearchId";
+            this.txtSearchId.Size = new System.Drawing.Size(100, 22);
+            this.txtSearchId.TabIndex = 3;
+            // 
+            // btnSearchID
+            // 
+            this.btnSearchID.Location = new System.Drawing.Point(391, 60);
+            this.btnSearchID.Name = "btnSearchID";
+            this.btnSearchID.Size = new System.Drawing.Size(160, 29);
+            this.btnSearchID.TabIndex = 2;
+            this.btnSearchID.Text = "Search by ID";
+            this.btnSearchID.UseVisualStyleBackColor = true;
+            this.btnSearchID.Click += new System.EventHandler(this.btnSearchID_Click);
+            // 
+            // dataGridViewFoundIns
+            // 
+            this.dataGridViewFoundIns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFoundIns.Location = new System.Drawing.Point(72, 204);
+            this.dataGridViewFoundIns.Name = "dataGridViewFoundIns";
+            this.dataGridViewFoundIns.RowHeadersWidth = 51;
+            this.dataGridViewFoundIns.RowTemplate.Height = 24;
+            this.dataGridViewFoundIns.Size = new System.Drawing.Size(644, 150);
+            this.dataGridViewFoundIns.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -428,6 +496,9 @@
             this.deptPage.ResumeLayout(false);
             this.deptPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDepts)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFoundIns)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -469,6 +540,12 @@
         private System.Windows.Forms.Button btnNewDept;
         private System.Windows.Forms.DataGridView dataGridViewDepts;
         private System.Windows.Forms.TextBox txtBirthdate;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox txtSearchName;
+        private System.Windows.Forms.Button btnSearchName;
+        private System.Windows.Forms.DataGridView dataGridViewFoundIns;
+        private System.Windows.Forms.TextBox txtSearchId;
+        private System.Windows.Forms.Button btnSearchID;
     }
 }
 
