@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MoviesActorsDbDto.props" />
+</Project>
