@@ -1,0 +1,16 @@
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\bin\Debug\InsDeptDesktopApp.exe.config
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\bin\Debug\InsDeptDesktopApp.exe
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\bin\Debug\InsDeptDesktopApp.pdb
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\bin\Debug\Newtonsoft.Json.dll
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\bin\Debug\System.Net.Http.Formatting.dll
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\bin\Debug\Newtonsoft.Json.xml
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\bin\Debug\System.Net.Http.Formatting.xml
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.csproj.AssemblyReference.cache
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.csproj.SuggestedBindingRedirects.cache
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.Form1.resources
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.Properties.Resources.resources
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.csproj.GenerateResource.cache
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.csproj.CoreCompileInputs.cache
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.csproj.CopyComplete
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.exe
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.pdb
