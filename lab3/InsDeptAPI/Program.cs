@@ -1,5 +1,6 @@
 
 using InsDeptAPI.Models;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsDeptAPI
@@ -21,6 +22,17 @@ namespace InsDeptAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            //CORS service
+            builder.Services.AddCors(CorsOptions =>
+                {
+                    CorsOptions.AddPolicy("myPolicy", CorsPolicyBuilder =>
+                    {
+                        CorsPolicyBuilder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    });
+                }
+            );
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -30,8 +42,10 @@ namespace InsDeptAPI
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
 
+            app.UseCors("myPolicy");
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseAuthorization();
 
 

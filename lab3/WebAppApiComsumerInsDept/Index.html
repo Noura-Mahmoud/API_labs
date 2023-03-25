@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="Scripts/jquery-3.6.4.js"></script>
+    <script src="Scripts/jquery-3.6.4.js"></script>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <!--<script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $.ajax({
+                    url: "https://localhost:7167/api/Instructors",
+                    dataType: "Json",
+                    success: function (result) {
+                        //$("#div1").html(result);
+                        console.log(result);
+                        for (let i of result) {
+                            document.getElementById("div1").innerHTML += i.name + "</br>";
+                        }
+                    }
+                });
+            });
+        });
+    </script>-->
+</head>
+<body>
+    <!--<label for="Id">Id:</label>
+    <input type="text" id="Id" name="Id" /><br><br>-->
+    <div class="mx-5 p-5">
+        <label for="Name">Id:</label>
+        <input type="number" id="Name" name="Id" /><br><br>
+
+        <label for="Name">Name:</label>
+        <input type="text" id="Name" name="Name" /><br><br>
+
+        <label for="Location">Location:</label>
+        <input type="text" id="Location" name="Location" /><br><br>
+
+        <label for="Branches">Branches:</label>
+        <input type="text" id="Branches" name="Branches" /><br><br>
+
+        <label for="Description">Description:</label>
+        <input type="text" id="Description" name="Description" /><br><br>
+
+
+        <input type="button" class="btn btn-outline-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" value="Add" onclick="AddDept()" />
+        <input type="button" class="btn btn-outline-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" value="Search ID" onclick="GetByID()" />
+        <input type="button" class="btn btn-outline-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" value="Search Name" onclick="GetByName()" />
+        <input type="button" class="btn btn-outline-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" value="Update" onclick="UpdateDept()" />
+        <input type="button" class="btn btn-outline-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" value="Delete" onclick="DeleteDept()" />
+        <input type="button" class="btn btn-outline-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" value="Get All" onclick="GetAllDepts()" />
+        <br><br>
+
+        <div id="table-container"></div>
+    </div>
+    <script>
+        function AddDept() {
+            // link API post method and send data
+            $.ajax({
+                url: "https://localhost:7167/api/Departments",
+                method: "Post",
+                contentType: "Application/Json",
+                data: JSON.stringify({
+                    id: 0,
+                    name: $("input[name='Name']").val(),
+                    location: $("input[name='Location']").val(),
+                    branches: $("input[name='Branches']").val(),
+                    description: $("input[name='Description']").val()
+                }),
+                success: function (result) {
+                    GetAllDepts();
+                    alert("Added");
+                },
+                Error: function (e) {
+                    alert(e.responseText);
+                }
+            });
+        };
+
+        function UpdateDept() {
+
+            // link API put method and send data
+            $.ajax({
+                url: "https://localhost:7167/api/Departments/" + $("input[name='Id']").val(),
+                method: "Put",
+                contentType: "Application/Json",
+                data: JSON.stringify({
+                    id: $("input[name='Id']").val(),
+                    name: $("input[name='Name']").val(),
+                    location: $("input[name='Location']").val(),
+                    branches: $("input[name='Branches']").val(),
+                    description: $("input[name='Description']").val()
+                }),
+                //data: obj,
+                success: function (result) {
+                    alert("Added");
+                },
+                Error: function (e) {
+                    alert(e.responseText);
+                }
+            });
+        };
+
+        function GetAllDepts() {
+            $.ajax({
+                url: "https://localhost:7167/api/Departments",
+                dataType: "Json",
+                success: function (data) {
+                    // create new table element
+                    var table = $('<table class="table table-bordered">');
+
+                    // create header row
+                    var headerRow = $('<tr class="thead-dark">');
+                    headerRow.append($('<th>').text('Id'));
+                    headerRow.append($('<th>').text('Name'));
+                    headerRow.append($('<th>').text('Description'));
+                    headerRow.append($('<th>').text('Location'));
+                    headerRow.append($('<th>').text('Branches'));
+                    table.append(headerRow);
+
+                    // create data rows
+                    $.each(data, function (index, item) {
+                        var dataRow = $('<tr>');
+                        dataRow.append($('<td>').text(item.id));
+                        dataRow.append($('<td>').text(item.name));
+                        dataRow.append($('<td>').text(item.description));
+                        dataRow.append($('<td>').text(item.location));
+                        dataRow.append($('<td>').text(item.branches));
+                        table.append(dataRow);
+                    });
+
+                    // add table to container element
+                    $('#table-container').empty().append(table);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('AJAX request failed: ' + textStatus + ', ' + errorThrown);
+                }
+
+            });
+        };
+
+        function DeleteDept() {
+            $.ajax({
+                url: "https://localhost:7167/api/Departments/" + $("input[name='Id']").val(),
+                type: 'DELETE',
+                success: function (result) {
+                    GetAllDepts();
+                    alert("Deleted");
+                },
+                error: function (e) { alert("Error in deleting"); }
+
+            });
+        };
+
+        function GetByID() {
+            $.ajax({
+                url: "https://localhost:7167/api/Departments/" + $("input[name='Id']").val(),
+                dataType: "Json",
+                success: function (data) {
+                    // create new table element
+                    var table = $('<table class="table table-bordered">');
+
+                    // create header row
+                    var headerRow = $('<tr class="thead-dark">');
+                    headerRow.append($('<th>').text('Id'));
+                    headerRow.append($('<th>').text('Name'));
+                    headerRow.append($('<th>').text('Description'));
+                    headerRow.append($('<th>').text('Location'));
+                    headerRow.append($('<th>').text('Branches'));
+                    table.append(headerRow);
+
+                    // create data row
+                        var dataRow = $('<tr>');
+                        dataRow.append($('<td>').text(data.id));
+                        dataRow.append($('<td>').text(data.name));
+                        dataRow.append($('<td>').text(data.description));
+                        dataRow.append($('<td>').text(data.location));
+                        dataRow.append($('<td>').text(data.branches));
+                        table.append(dataRow);
+                    
+
+                    // add table to container element
+                    $('#table-container').empty().append(table);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('AJAX request failed: ' + textStatus + ', ' + errorThrown);
+                }
+
+            });
+        };
+
+        function GetByName() {
+            $.ajax({
+                url: "https://localhost:7167/api/Departments/" + $("input[name='Name']").val(),
+                dataType: "Json",
+                success: function (data) {
+                    // create new table element
+                    var table = $('<table class="table table-bordered">');
+
+                    // create header row
+                    var headerRow = $('<tr class="thead-dark">');
+                    headerRow.append($('<th>').text('Id'));
+                    headerRow.append($('<th>').text('Name'));
+                    headerRow.append($('<th>').text('Description'));
+                    headerRow.append($('<th>').text('Location'));
+                    headerRow.append($('<th>').text('Branches'));
+                    table.append(headerRow);
+
+                    // create data row
+                    var dataRow = $('<tr>');
+                    dataRow.append($('<td>').text(data.id));
+                    dataRow.append($('<td>').text(data.name));
+                    dataRow.append($('<td>').text(data.description));
+                    dataRow.append($('<td>').text(data.location));
+                    dataRow.append($('<td>').text(data.branches));
+                    table.append(dataRow);
+
+
+                    // add table to container element
+                    $('#table-container').empty().append(table);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('AJAX request failed: ' + textStatus + ', ' + errorThrown);
+                }
+
+            });
+        };
+    </script>
+    <!--<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+    <button>Get External Content</button>-->
+
+</body>
+</html>
