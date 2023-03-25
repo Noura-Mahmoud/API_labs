@@ -20,7 +20,7 @@ namespace InsDeptAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Instructors
+        // GET: api/Instructors1
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Instructor>>> GetInstructors()
         {
@@ -31,7 +31,7 @@ namespace InsDeptAPI.Controllers
             return await _context.Instructors.ToListAsync();
         }
 
-        // GET: api/Instructors/5
+        // GET: api/Instructors1/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Instructor>> GetInstructor(int id)
         {
@@ -55,7 +55,7 @@ namespace InsDeptAPI.Controllers
             {
                 return NotFound();
             }
-            var instructor = await _context.Instructors.FirstOrDefaultAsync(i=>i.Name == name);
+            var instructor = await _context.Instructors.FirstOrDefaultAsync(i => i.Name == name);
 
             if (instructor == null)
             {
@@ -65,7 +65,7 @@ namespace InsDeptAPI.Controllers
             return instructor;
         }
 
-        // PUT: api/Instructors/5
+        // PUT: api/Instructors1/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutInstructor(int id, Instructor instructor)
@@ -96,41 +96,50 @@ namespace InsDeptAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Instructors
+        // POST: api/Instructors1
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Instructor>> PostInstructor(Instructor instructor)
         {
-          if (_context.Instructors == null)
-          {
-              return Problem("Entity set 'InsDeptDbContextAPI.Instructors'  is null.");
-          }
-         // if (_context.Instructors.FirstOrDefault(i=>i.Name == instructor.Name && i.Email == instructor.Email)== null)
-          if (_context.Instructors.FirstOrDefault(i=>i.SSN == instructor.SSN)== null)
+            //if (_context.Instructors == null)
+            //{
+            //    return Problem("Entity set 'InsDeptDbContextAPI.Instructors'  is null.");
+            //}
+            //  _context.Instructors.Add(instructor);
+            //  await _context.SaveChangesAsync();
+
+            //  return CreatedAtAction("GetInstructor", new { id = instructor.Id }, instructor);
+            if (_context.Instructors == null)
+            {
+                return Problem("Entity set 'InsDeptDbContextAPI.Instructors'  is null.");
+            }
+            // if (_context.Instructors.FirstOrDefault(i=>i.Name == instructor.Name && i.Email == instructor.Email)== null)
+            if (_context.Instructors.FirstOrDefault(i => i.SSN == instructor.SSN) == null)
             {
                 //_context.Instructors.Add(instructor);
                 _context.Instructors.Add(new Instructor()
                 {
-                SSN = instructor.SSN,
-                Name = instructor.Name,
-                Address = instructor.Address,
-                Age = instructor.Age,
-                Phone = instructor.Phone,
-                Email = instructor.Email,
-                Password = instructor.Password,
-                Salary = instructor.Salary,
-                DOB = instructor.DOB
+                    SSN = instructor.SSN,
+                    Name = instructor.Name,
+                    Address = instructor.Address,
+                    Age = instructor.Age,
+                    Phone = instructor.Phone,
+                    Email = instructor.Email,
+                    Password = instructor.Password,
+                    Salary = instructor.Salary,
+                    DOB = instructor.DOB,
+                    DepartmentId = instructor.DepartmentId
                 });
                 await _context.SaveChangesAsync();
 
                 return Created("GetInstructors", null);
                 //return CreatedAtAction("GetInstructor", new { id = instructor.Id }, instructor);
             }
-          else
-            return BadRequest("Already exists");
+            else
+                return BadRequest("Already exists");
         }
 
-        // DELETE: api/Instructors/5
+        // DELETE: api/Instructors1/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteInstructor(int id)
         {

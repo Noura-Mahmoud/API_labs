@@ -69,6 +69,8 @@
             this.txtSearchId = new System.Windows.Forms.TextBox();
             this.btnSearchID = new System.Windows.Forms.Button();
             this.dataGridViewFoundIns = new System.Windows.Forms.DataGridView();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBoxDept = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.insPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInstructors)).BeginInit();
@@ -94,6 +96,8 @@
             // 
             // insPage
             // 
+            this.insPage.Controls.Add(this.comboBoxDept);
+            this.insPage.Controls.Add(this.label10);
             this.insPage.Controls.Add(this.txtBirthdate);
             this.insPage.Controls.Add(this.btnUpdateIns);
             this.insPage.Controls.Add(this.label9);
@@ -125,7 +129,7 @@
             // 
             // txtBirthdate
             // 
-            this.txtBirthdate.Location = new System.Drawing.Point(471, 67);
+            this.txtBirthdate.Location = new System.Drawing.Point(424, 68);
             this.txtBirthdate.Name = "txtBirthdate";
             this.txtBirthdate.Size = new System.Drawing.Size(100, 22);
             this.txtBirthdate.TabIndex = 7;
@@ -142,8 +146,11 @@
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(399, 111);
+            this.label9.Location = new System.Drawing.Point(356, 112);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(58, 16);
             this.label9.TabIndex = 26;
@@ -151,8 +158,11 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(399, 68);
+            this.label8.Location = new System.Drawing.Point(356, 69);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(62, 16);
             this.label8.TabIndex = 25;
@@ -160,8 +170,11 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(399, 26);
+            this.label6.Location = new System.Drawing.Point(356, 27);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 16);
             this.label6.TabIndex = 24;
@@ -169,22 +182,25 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(471, 108);
+            this.txtAddress.Location = new System.Drawing.Point(424, 109);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(100, 22);
             this.txtAddress.TabIndex = 8;
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(471, 23);
+            this.txtPhone.Location = new System.Drawing.Point(424, 24);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(100, 22);
             this.txtPhone.TabIndex = 6;
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(209, 68);
+            this.label7.Location = new System.Drawing.Point(195, 68);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 16);
             this.label7.TabIndex = 18;
@@ -192,6 +208,9 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(14, 108);
             this.label5.Name = "label5";
@@ -201,6 +220,9 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(14, 71);
             this.label4.Name = "label4";
@@ -210,8 +232,11 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(209, 111);
+            this.label3.Location = new System.Drawing.Point(195, 111);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 16);
             this.label3.TabIndex = 14;
@@ -219,8 +244,11 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(209, 29);
+            this.label2.Location = new System.Drawing.Point(195, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 13;
@@ -228,6 +256,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(14, 29);
             this.label1.Name = "label1";
@@ -237,7 +268,7 @@
             // 
             // txtSalary
             // 
-            this.txtSalary.Location = new System.Drawing.Point(281, 68);
+            this.txtSalary.Location = new System.Drawing.Point(247, 68);
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.Size = new System.Drawing.Size(100, 22);
             this.txtSalary.TabIndex = 4;
@@ -258,14 +289,14 @@
             // 
             // txtAge
             // 
-            this.txtAge.Location = new System.Drawing.Point(281, 108);
+            this.txtAge.Location = new System.Drawing.Point(247, 108);
             this.txtAge.Name = "txtAge";
             this.txtAge.Size = new System.Drawing.Size(100, 22);
             this.txtAge.TabIndex = 5;
             // 
             // txtNameIns
             // 
-            this.txtNameIns.Location = new System.Drawing.Point(281, 26);
+            this.txtNameIns.Location = new System.Drawing.Point(247, 26);
             this.txtNameIns.Name = "txtNameIns";
             this.txtNameIns.Size = new System.Drawing.Size(100, 22);
             this.txtNameIns.TabIndex = 3;
@@ -471,6 +502,9 @@
             // 
             // dataGridViewFoundIns
             // 
+            this.dataGridViewFoundIns.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewFoundIns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFoundIns.Location = new System.Drawing.Point(72, 204);
             this.dataGridViewFoundIns.Name = "dataGridViewFoundIns";
@@ -478,6 +512,26 @@
             this.dataGridViewFoundIns.RowTemplate.Height = 24;
             this.dataGridViewFoundIns.Size = new System.Drawing.Size(644, 150);
             this.dataGridViewFoundIns.TabIndex = 4;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(544, 49);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 16);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Department";
+            // 
+            // comboBoxDept
+            // 
+            this.comboBoxDept.FormattingEnabled = true;
+            this.comboBoxDept.Location = new System.Drawing.Point(547, 75);
+            this.comboBoxDept.Name = "comboBoxDept";
+            this.comboBoxDept.Size = new System.Drawing.Size(74, 24);
+            this.comboBoxDept.TabIndex = 28;
             // 
             // Form1
             // 
@@ -546,6 +600,8 @@
         private System.Windows.Forms.DataGridView dataGridViewFoundIns;
         private System.Windows.Forms.TextBox txtSearchId;
         private System.Windows.Forms.Button btnSearchID;
+        private System.Windows.Forms.ComboBox comboBoxDept;
+        private System.Windows.Forms.Label label10;
     }
 }
 

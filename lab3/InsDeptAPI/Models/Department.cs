@@ -22,5 +22,7 @@ namespace InsDeptAPI.Models
         [Required]
         [StringLength(500)]
         public string Description { get; set; }
+        // Navigation property
+        //public ICollection<Instructor> Instructors { get; set; }
     }
 }

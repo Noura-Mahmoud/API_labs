@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InsDeptAPI.Models
 {
@@ -44,5 +45,10 @@ namespace InsDeptAPI.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime DOB { get; set; }
+
+        // Navigation property
+        [ForeignKey("Department")]
+        public int DepartmentId { get; set; }
+        //public Department Department { get; set; }
     }
 }

@@ -49,6 +49,11 @@ namespace InsDeptDesktopApp
             {
                 List<Department> departments = resultDept.Content.ReadAsAsync<List<Department>>().Result;
                 dataGridViewDepts.DataSource = departments;
+
+                // link them to combobox
+                comboBoxDept.DataSource = departments;
+                comboBoxDept.ValueMember = "Id";
+                comboBoxDept.DisplayMember = "Name";
             }
             else
             {
@@ -66,6 +71,7 @@ namespace InsDeptDesktopApp
                 Salary = 3000,
                 DOB = DateTime.Parse("6/6/1990")
             }) ;
+            comboBoxDept.SelectedIndex = 0;
             FillDeptBoxesWithData(new Department()
             {
                 Name = "UI",
@@ -74,29 +80,39 @@ namespace InsDeptDesktopApp
                 Location = "Smart"
             });
 
+            dataGridViewInstructors.Rows[0].Selected = true;
+            dataGridViewDepts.Rows[0].Selected = true;
+
             //dataGridViewInstructors.SelectionChanged += Instructors_SelectionChanged;
             insPage.Enter += addInstructorsSelectionChanged;
             insPage.Leave += removeInstructorsSelectionChanged;
 
             //dataGridViewDepts.SelectionChanged += Depts_SelectionChanged;
             deptPage.Enter += addDeptsSelectionChanged;
-            deptPage.Leave -= removeDeptsSelectionChanged;
+            deptPage.Leave += removeDeptsSelectionChanged;
         }
 
         private void addInstructorsSelectionChanged(object sender, EventArgs e)
         {
+            dataGridViewInstructors.Rows[0].Selected = true;
+            dataGridViewDepts.Rows[0].Selected = true;
             dataGridViewInstructors.SelectionChanged += Instructors_SelectionChanged;
         }
         private void removeInstructorsSelectionChanged(object sender, EventArgs e)
         {
+            dataGridViewDepts.Rows[0].Selected = true;
             dataGridViewInstructors.SelectionChanged -= Instructors_SelectionChanged;
         }
         private void addDeptsSelectionChanged(object sender, EventArgs e)
         {
+            dataGridViewDepts.Rows[0].Selected = true;
+            dataGridViewInstructors.SelectionChanged += Instructors_SelectionChanged;
+
             dataGridViewDepts.SelectionChanged += Depts_SelectionChanged;
         }
         private void removeDeptsSelectionChanged(object sender, EventArgs e)
         {
+            dataGridViewInstructors.Rows[0].Selected = true;
             dataGridViewDepts.SelectionChanged -= Depts_SelectionChanged;
         }
         private void btnNewDept_Click(object sender, EventArgs e)
@@ -231,7 +247,8 @@ namespace InsDeptDesktopApp
                     Age = age,
                     Salary = salary,
                     //DOB = DateTime.Parse(birthDate.Text)
-                    DOB = DateTime.Parse(txtBirthdate.Text)
+                    DOB = DateTime.Parse(txtBirthdate.Text),
+                    DepartmentId = (int) comboBoxDept.SelectedValue
                 };
             }
         }
@@ -257,6 +274,7 @@ namespace InsDeptDesktopApp
             txtAge.Text = instructor.Age.ToString();
             txtSalary.Text = instructor.Salary.ToString();
             txtBirthdate.Text = instructor.DOB.Date.ToString();
+            comboBoxDept.SelectedValue = instructor.DepartmentId;
         }
 
         private void FillDeptBoxesWithData(Department department)
@@ -352,6 +370,10 @@ namespace InsDeptDesktopApp
                     insList.Add(ins);
                     dataGridViewFoundIns.DataSource = insList;
                 }
+                else
+                {
+                    MessageBox.Show("Doesn't exist");
+                }
             }
             else
             {
@@ -373,8 +395,10 @@ namespace InsDeptDesktopApp
                     Instructor ins = resultIns.Content.ReadAsAsync<Instructor>().Result;
                     insList.Add(ins);
                     dataGridViewFoundIns.DataSource = insList;
-                    if (ins == null)
-                        MessageBox.Show("No Instructors of this name found");
+                }
+                else
+                {
+                    MessageBox.Show("No Instructors of this name found");
                 }
             }
             catch(Exception ex)

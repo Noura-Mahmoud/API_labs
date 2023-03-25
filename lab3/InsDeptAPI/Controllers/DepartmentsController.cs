@@ -56,7 +56,7 @@ namespace InsDeptAPI.Controllers
             {
                 return NotFound();
             }
-            var department = await _context.Departments.FirstOrDefaultAsync(d=>d.Name == name);
+            var department = await _context.Departments.FirstOrDefaultAsync(d => d.Name == name);
 
             if (department == null)
             {
@@ -102,11 +102,19 @@ namespace InsDeptAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Department>> PostDepartment(Department department)
         {
-          if (_context.Departments == null)
-          {
-              return Problem("Entity set 'InsDeptDbContextAPI.Departments'  is null.");
-          }
-          if (_context.Departments.FirstOrDefault(d => d.Name == department.Name) == null)
+            //  if (_context.Departments == null)
+            //  {
+            //      return Problem("Entity set 'InsDeptDbContextAPI.Departments'  is null.");
+            //  }
+            //    _context.Departments.Add(department);
+            //    await _context.SaveChangesAsync();
+
+            //    return CreatedAtAction("GetDepartment", new { id = department.Id }, department);
+            if (_context.Departments == null)
+            {
+                return Problem("Entity set 'InsDeptDbContextAPI.Departments'  is null.");
+            }
+            if (_context.Departments.FirstOrDefault(d => d.Name == department.Name) == null)
             {
                 //_context.Departments.Add(department);
                 _context.Departments.Add(new Department()

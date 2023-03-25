@@ -18,5 +18,6 @@ namespace InsDeptDesktopApp.Entities
         public string Password { get; set; }
         public decimal Salary { get; set; }
         public DateTime DOB { get; set; }
+        public int DepartmentId { get; set; }
     }
 }
