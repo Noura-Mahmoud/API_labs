@@ -14,3 +14,5 @@ F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.
 F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.csproj.CopyComplete
 F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.exe
 F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.pdb
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.loginRegisterForm.resources
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptDesktopApp\obj\Debug\InsDeptDesktopApp.RegisterForm.resources

@@ -56,6 +56,130 @@ Department
 <hr>
 <hr>
 
+
+
+
+## JWT
+## Steps
+1. In your API project, from *NuGet package manager*, install *Microsoft.AspNetCore.Identity.EntityFrameworkCore* and *Microsoft.AspNetCore.Authentication.JwtBearer*
+2. Add *AppIdentityUser* calss that inherits from *IdentityUser*
+3. Change the context file to make it inherits from *IdentityDbContext<AppIdentityUser>* to add tables for users and see changes we make in this class
+4. Add migration and update database
+5. Add empty API controller to controll accounts
+6. Create your *RegisterUserDTO* class
+7. In the controller class, inject *UserManager<AppIdentityUser>* into the ctor
+8. Build your register function like 
+  ```C#
+  [HttpPost("register")]
+        public async Task<IActionResult> Registeration(RegisterUserDTO userDto)
+        {
+            if(ModelState.IsValid)
+            {
+                //save
+                AppIdentityUser user = new AppIdentityUser();
+                user.UserName = userDto.UserName;
+                user.Email = userDto.Email;
+                IdentityResult result = await userManager.CreateAsync(user, userDto.Password);
+                if(result.Succeeded)
+                {
+                    return Ok("Accounr Added");
+                }
+                return BadRequest(result.Errors);
+            }
+            return BadRequest(ModelState);
+        }
+  ```
+9. Inject Identity service like
+  ```C#
+  builder.Services.AddIdentity<AppIdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<InsDeptDbContextAPI>();
+  ```
+
+10. Create your *LoginUserDTO* class
+11. Build login function like 
+  ```C#
+   public async Task<IActionResult> Login(LoginUserDTO userDto)
+        { 
+            if(ModelState.IsValid)
+            {
+                AppIdentityUser user = await userManager.FindByNameAsync(userDto.UserName);
+                if(user!= null)
+                {
+                    bool isFound = await userManager.CheckPasswordAsync(user, userDto.Password);
+                    if(isFound)
+                    {
+                        //claims Token
+                        var claims = new List<Claim>();
+                        claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+                        claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
+                        claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+
+                        //get role
+                        var roles = await userManager.GetRolesAsync(user);
+                        foreach(var role in roles) 
+                        {
+                            claims.Add(new Claim(ClaimTypes.Role, role));
+                        }
+
+                        //credentials
+                        SecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
+                        //it need the used algo and the key
+                        SigningCredentials signingCredentials = new SigningCredentials(securityKey ,SecurityAlgorithms.HmacSha256);
+
+
+                        //create token
+                        //design token
+                        JwtSecurityToken myToken = new JwtSecurityToken(
+                            issuer: configuration["JWT:ValidIssuer"], // link of Web API 
+                            audience: configuration["JWT:ValidAudience"], // default path for audience // consumer
+                            claims: claims,
+                            expires: DateTime.UtcNow.AddDays(1),
+                            signingCredentials: signingCredentials
+                            );
+                        return Ok(new
+                        {
+                           token = new JwtSecurityTokenHandler().WriteToken(myToken),   
+                           expiration = myToken.ValidTo
+                        });
+                    }
+                }
+                return Unauthorized(); // couldn't be found
+                //check, create token
+            }
+            return Unauthorized();
+        }
+    
+  ```
+  And don't forget to add needed data to *appSetting.json* file
+
+12. Add
+  ```C#
+  app.UseAuthentication();
+  ```
+  and 
+  ```C#
+  //Authorization with JWT token in Authentication check
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options=>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = configuration["JWT:ValidIssuer"],
+                    ValidateAudience =true,
+                    ValidAudience = configuration["JWT:ValidAudience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
+            };
+            });
+  ```
+
+
 ## Windows Forms
 ## Steps
 1. Create *Windows Forms App(.NET Framework)* project in visual studio

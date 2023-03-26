@@ -274,3 +274,10 @@ F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\obj\Debug\net7.0\refint\InsDeptAPI.
 F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\obj\Debug\net7.0\InsDeptAPI.pdb
 F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\obj\Debug\net7.0\InsDeptAPI.genruntimeconfig.cache
 F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\obj\Debug\net7.0\ref\InsDeptAPI.dll
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+F:\ITI_mobile cross\API\Day3\lab3\InsDeptAPI\bin\Debug\net7.0\Microsoft.Extensions.Options.dll

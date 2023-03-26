@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace InsDeptAPI.Models
 {
-    public class InsDeptDbContextAPI: DbContext
+    //public class InsDeptDbContextAPI: DbContext
+    public class InsDeptDbContextAPI : IdentityDbContext<AppIdentityUser>
     {
         public InsDeptDbContextAPI(DbContextOptions options):base(options)
         {
