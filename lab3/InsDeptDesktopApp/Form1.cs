@@ -28,9 +28,6 @@ namespace InsDeptDesktopApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dataGridViewInstructors.SelectionChanged -= Instructors_SelectionChanged;
-            dataGridViewDepts.SelectionChanged -= Depts_SelectionChanged;
-
             client = new HttpClient();
 
             HttpResponseMessage resultIns = client.GetAsync(ConfigurationManager.AppSettings["Instructors"]).Result;
@@ -79,32 +76,8 @@ namespace InsDeptDesktopApp
                 Location = "Smart"
             });
 
-            insPage.Enter += addInstructorsSelectionChanged;
-            insPage.Leave += removeInstructorsSelectionChanged;
-
-            deptPage.Enter += addDeptsSelectionChanged;
-            deptPage.Leave += removeDeptsSelectionChanged;
         }
 
-        private void addInstructorsSelectionChanged(object sender, EventArgs e)
-        {
-            dataGridViewInstructors.SelectionChanged += Instructors_SelectionChanged;
-        }
-        private void removeInstructorsSelectionChanged(object sender, EventArgs e)
-        {
-            dataGridViewInstructors.SelectionChanged -= Instructors_SelectionChanged;
-        }
-        private void addDeptsSelectionChanged(object sender, EventArgs e)
-        {
-            dataGridViewInstructors.SelectionChanged += Instructors_SelectionChanged;
-
-            dataGridViewDepts.SelectionChanged += Depts_SelectionChanged;
-        }
-        private void removeDeptsSelectionChanged(object sender, EventArgs e)
-        {
-            //dataGridViewInstructors.Rows[0].Selected = true;
-            dataGridViewDepts.SelectionChanged -= Depts_SelectionChanged;
-        }
         private void btnNewDept_Click(object sender, EventArgs e)
         {
             Department dept =GetDeptDataFromBoxes();
@@ -169,28 +142,6 @@ namespace InsDeptDesktopApp
                 }
             }
         }
-
-        private void Instructors_SelectionChanged(object sender, EventArgs e)
-        {
-            if(dataGridViewInstructors.SelectedRows.Count > 0)
-            {
-                try
-                {
-                    int id = (int)dataGridViewInstructors.SelectedRows[0].Cells[0].Value;
-                    HttpResponseMessage resultIns = client.GetAsync(ConfigurationManager.AppSettings["Instructors"] + $"/{id}").Result;
-                    Instructor instructor = resultIns.Content.ReadAsAsync<Instructor>().Result;
-                    FillInsBoxesWithData(instructor);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("ins");
-                    MessageBox.Show(ex.Message);
-                    //throw;
-                }
-            }
-        }
-
-
         private Instructor GetInsDataFromBoxes()
         {
             if (!Decimal.TryParse(txtSalary.Text, out decimal salary))
@@ -290,27 +241,6 @@ namespace InsDeptDesktopApp
                 }
             }
         }
-
-        private void Depts_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridViewDepts.SelectedRows.Count > 0)
-            {
-                try
-                {
-                    int id = (int)dataGridViewDepts.SelectedRows[0].Cells[0].Value;
-                    HttpResponseMessage resultDept = client.GetAsync(ConfigurationManager.AppSettings["Departments"] + $"/{id}").Result;
-                    Department dept = resultDept.Content.ReadAsAsync<Department>().Result;
-                    FillDeptBoxesWithData(dept);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("dept");
-                    MessageBox.Show(ex.Message);
-                    //throw;
-                }
-            }
-        }
-
         private void btnUpdateDept_Click(object sender, EventArgs e)
         {
             int id = (int)dataGridViewDepts.SelectedRows[0].Cells[0].Value;
@@ -377,6 +307,46 @@ namespace InsDeptDesktopApp
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dataGridViewInstructors_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewInstructors.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    int id = (int)dataGridViewInstructors.SelectedRows[0].Cells[0].Value;
+                    HttpResponseMessage resultIns = client.GetAsync(ConfigurationManager.AppSettings["Instructors"] + $"/{id}").Result;
+                    Instructor instructor = resultIns.Content.ReadAsAsync<Instructor>().Result;
+                    FillInsBoxesWithData(instructor);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ins");
+                    MessageBox.Show(ex.Message);
+                    //throw;
+                }
+            }
+        }
+
+        private void dataGridViewDepts_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewDepts.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    int id = (int)dataGridViewDepts.SelectedRows[0].Cells[0].Value;
+                    HttpResponseMessage resultDept = client.GetAsync(ConfigurationManager.AppSettings["Departments"] + $"/{id}").Result;
+                    Department dept = resultDept.Content.ReadAsAsync<Department>().Result;
+                    FillDeptBoxesWithData(dept);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("dept");
+                    MessageBox.Show(ex.Message);
+                    //throw;
+                }
             }
         }
     }

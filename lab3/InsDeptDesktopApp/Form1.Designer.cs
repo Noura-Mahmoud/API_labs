@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.insPage = new System.Windows.Forms.TabPage();
+            this.comboBoxDept = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.txtBirthdate = new System.Windows.Forms.TextBox();
             this.btnUpdateIns = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -64,13 +66,11 @@
             this.btnNewDept = new System.Windows.Forms.Button();
             this.dataGridViewDepts = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnSearchName = new System.Windows.Forms.Button();
-            this.txtSearchName = new System.Windows.Forms.TextBox();
+            this.dataGridViewFoundIns = new System.Windows.Forms.DataGridView();
             this.txtSearchId = new System.Windows.Forms.TextBox();
             this.btnSearchID = new System.Windows.Forms.Button();
-            this.dataGridViewFoundIns = new System.Windows.Forms.DataGridView();
-            this.label10 = new System.Windows.Forms.Label();
-            this.comboBoxDept = new System.Windows.Forms.ComboBox();
+            this.txtSearchName = new System.Windows.Forms.TextBox();
+            this.btnSearchName = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.insPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInstructors)).BeginInit();
@@ -126,6 +126,26 @@
             this.insPage.TabIndex = 0;
             this.insPage.Text = "Instructors";
             this.insPage.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxDept
+            // 
+            this.comboBoxDept.FormattingEnabled = true;
+            this.comboBoxDept.Location = new System.Drawing.Point(547, 75);
+            this.comboBoxDept.Name = "comboBoxDept";
+            this.comboBoxDept.Size = new System.Drawing.Size(74, 24);
+            this.comboBoxDept.TabIndex = 28;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(544, 49);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 16);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Department";
             // 
             // txtBirthdate
             // 
@@ -330,7 +350,8 @@
             this.dataGridViewInstructors.RowTemplate.Height = 24;
             this.dataGridViewInstructors.Size = new System.Drawing.Size(784, 280);
             this.dataGridViewInstructors.TabIndex = 1;
-            this.dataGridViewInstructors.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewInstructors_RowHeaderMouseDoubleClick);
+            this.dataGridViewInstructors.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewDepts_RowHeaderMouseDoubleClick);
+            this.dataGridViewInstructors.SelectionChanged += new System.EventHandler(this.dataGridViewInstructors_SelectionChanged);
             // 
             // deptPage
             // 
@@ -450,6 +471,7 @@
             this.dataGridViewDepts.Size = new System.Drawing.Size(784, 280);
             this.dataGridViewDepts.TabIndex = 1;
             this.dataGridViewDepts.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewDepts_RowHeaderMouseDoubleClick);
+            this.dataGridViewDepts.SelectionChanged += new System.EventHandler(this.dataGridViewDepts_SelectionChanged);
             // 
             // tabPage1
             // 
@@ -466,22 +488,18 @@
             this.tabPage1.Text = "Search Instructor";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // btnSearchName
+            // dataGridViewFoundIns
             // 
-            this.btnSearchName.Location = new System.Drawing.Point(391, 121);
-            this.btnSearchName.Name = "btnSearchName";
-            this.btnSearchName.Size = new System.Drawing.Size(160, 33);
-            this.btnSearchName.TabIndex = 0;
-            this.btnSearchName.Text = "Search by name";
-            this.btnSearchName.UseVisualStyleBackColor = true;
-            this.btnSearchName.Click += new System.EventHandler(this.btnSearchName_Click);
-            // 
-            // txtSearchName
-            // 
-            this.txtSearchName.Location = new System.Drawing.Point(241, 128);
-            this.txtSearchName.Name = "txtSearchName";
-            this.txtSearchName.Size = new System.Drawing.Size(100, 22);
-            this.txtSearchName.TabIndex = 1;
+            this.dataGridViewFoundIns.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewFoundIns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFoundIns.Location = new System.Drawing.Point(72, 204);
+            this.dataGridViewFoundIns.Name = "dataGridViewFoundIns";
+            this.dataGridViewFoundIns.RowHeadersWidth = 51;
+            this.dataGridViewFoundIns.RowTemplate.Height = 24;
+            this.dataGridViewFoundIns.Size = new System.Drawing.Size(644, 150);
+            this.dataGridViewFoundIns.TabIndex = 4;
             // 
             // txtSearchId
             // 
@@ -500,38 +518,22 @@
             this.btnSearchID.UseVisualStyleBackColor = true;
             this.btnSearchID.Click += new System.EventHandler(this.btnSearchID_Click);
             // 
-            // dataGridViewFoundIns
+            // txtSearchName
             // 
-            this.dataGridViewFoundIns.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewFoundIns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFoundIns.Location = new System.Drawing.Point(72, 204);
-            this.dataGridViewFoundIns.Name = "dataGridViewFoundIns";
-            this.dataGridViewFoundIns.RowHeadersWidth = 51;
-            this.dataGridViewFoundIns.RowTemplate.Height = 24;
-            this.dataGridViewFoundIns.Size = new System.Drawing.Size(644, 150);
-            this.dataGridViewFoundIns.TabIndex = 4;
+            this.txtSearchName.Location = new System.Drawing.Point(241, 128);
+            this.txtSearchName.Name = "txtSearchName";
+            this.txtSearchName.Size = new System.Drawing.Size(100, 22);
+            this.txtSearchName.TabIndex = 1;
             // 
-            // label10
+            // btnSearchName
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(544, 49);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 16);
-            this.label10.TabIndex = 27;
-            this.label10.Text = "Department";
-            // 
-            // comboBoxDept
-            // 
-            this.comboBoxDept.FormattingEnabled = true;
-            this.comboBoxDept.Location = new System.Drawing.Point(547, 75);
-            this.comboBoxDept.Name = "comboBoxDept";
-            this.comboBoxDept.Size = new System.Drawing.Size(74, 24);
-            this.comboBoxDept.TabIndex = 28;
+            this.btnSearchName.Location = new System.Drawing.Point(391, 121);
+            this.btnSearchName.Name = "btnSearchName";
+            this.btnSearchName.Size = new System.Drawing.Size(160, 33);
+            this.btnSearchName.TabIndex = 0;
+            this.btnSearchName.Text = "Search by name";
+            this.btnSearchName.UseVisualStyleBackColor = true;
+            this.btnSearchName.Click += new System.EventHandler(this.btnSearchName_Click);
             // 
             // Form1
             // 
