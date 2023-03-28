@@ -71,7 +71,6 @@ namespace InsDeptDesktopApp
                 Salary = 3000,
                 DOB = DateTime.Parse("6/6/1990")
             }) ;
-            comboBoxDept.SelectedIndex = 0;
             FillDeptBoxesWithData(new Department()
             {
                 Name = "UI",
@@ -80,39 +79,30 @@ namespace InsDeptDesktopApp
                 Location = "Smart"
             });
 
-            dataGridViewInstructors.Rows[0].Selected = true;
-            dataGridViewDepts.Rows[0].Selected = true;
-
-            //dataGridViewInstructors.SelectionChanged += Instructors_SelectionChanged;
             insPage.Enter += addInstructorsSelectionChanged;
             insPage.Leave += removeInstructorsSelectionChanged;
 
-            //dataGridViewDepts.SelectionChanged += Depts_SelectionChanged;
             deptPage.Enter += addDeptsSelectionChanged;
             deptPage.Leave += removeDeptsSelectionChanged;
         }
 
         private void addInstructorsSelectionChanged(object sender, EventArgs e)
         {
-            dataGridViewInstructors.Rows[0].Selected = true;
-            dataGridViewDepts.Rows[0].Selected = true;
             dataGridViewInstructors.SelectionChanged += Instructors_SelectionChanged;
         }
         private void removeInstructorsSelectionChanged(object sender, EventArgs e)
         {
-            dataGridViewDepts.Rows[0].Selected = true;
             dataGridViewInstructors.SelectionChanged -= Instructors_SelectionChanged;
         }
         private void addDeptsSelectionChanged(object sender, EventArgs e)
         {
-            dataGridViewDepts.Rows[0].Selected = true;
             dataGridViewInstructors.SelectionChanged += Instructors_SelectionChanged;
 
             dataGridViewDepts.SelectionChanged += Depts_SelectionChanged;
         }
         private void removeDeptsSelectionChanged(object sender, EventArgs e)
         {
-            dataGridViewInstructors.Rows[0].Selected = true;
+            //dataGridViewInstructors.Rows[0].Selected = true;
             dataGridViewDepts.SelectionChanged -= Depts_SelectionChanged;
         }
         private void btnNewDept_Click(object sender, EventArgs e)
@@ -140,30 +130,6 @@ namespace InsDeptDesktopApp
 
         private void btnNewIns_Click(object sender, EventArgs e)
         {
-            //if(!Decimal.TryParse(txtSalary.Text, out decimal salary))
-            //{
-            //    MessageBox.Show("Salary must be a number");
-            //}
-            //else if (!int.TryParse(txtAge.Text, out int age))
-            //{
-            //    MessageBox.Show("Age must be a number");
-            //}
-            //else 
-            //{
-            //    Instructor ins = new Instructor()
-            //    {
-            //Name = txtNameIns.Text,
-            //SSN = txtSSN.Text,
-            //Address = txtAddress.Text,
-            //Phone = txtPhone.Text,
-            //Email = txtEmail.Text,
-            //Password = txtPassword.Text,
-            //Age = age,
-            //Salary = salary,
-            ////DOB = DateTime.Parse(birthDate.Text)
-            //DOB = DateTime.Parse(txtBirthdate.Text)
-            //};
-
             Instructor ins = GetInsDataFromBoxes();
             if (ins == null)
             {
@@ -183,7 +149,6 @@ namespace InsDeptDesktopApp
                     MessageBox.Show("Error adding new instructor");
                 }
             }
-            //}
         }
 
         private void dataGridViewInstructors_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -207,17 +172,21 @@ namespace InsDeptDesktopApp
 
         private void Instructors_SelectionChanged(object sender, EventArgs e)
         {
-            try
+            if(dataGridViewInstructors.SelectedRows.Count > 0)
             {
-                int id = (int)dataGridViewInstructors.SelectedRows[0].Cells[0].Value;
-                HttpResponseMessage resultIns = client.GetAsync(ConfigurationManager.AppSettings["Instructors"] + $"/{id}").Result;
-                Instructor instructor = resultIns.Content.ReadAsAsync<Instructor>().Result;
-                FillInsBoxesWithData(instructor);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                //throw;
+                try
+                {
+                    int id = (int)dataGridViewInstructors.SelectedRows[0].Cells[0].Value;
+                    HttpResponseMessage resultIns = client.GetAsync(ConfigurationManager.AppSettings["Instructors"] + $"/{id}").Result;
+                    Instructor instructor = resultIns.Content.ReadAsAsync<Instructor>().Result;
+                    FillInsBoxesWithData(instructor);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ins");
+                    MessageBox.Show(ex.Message);
+                    //throw;
+                }
             }
         }
 
@@ -324,17 +293,21 @@ namespace InsDeptDesktopApp
 
         private void Depts_SelectionChanged(object sender, EventArgs e)
         {
-            try
+            if (dataGridViewDepts.SelectedRows.Count > 0)
             {
-                int id = (int)dataGridViewDepts.SelectedRows[0].Cells[0].Value;
-                HttpResponseMessage resultDept = client.GetAsync(ConfigurationManager.AppSettings["Departments"] + $"/{id}").Result;
-                Department dept = resultDept.Content.ReadAsAsync<Department>().Result;
-                FillDeptBoxesWithData(dept);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                //throw;
+                try
+                {
+                    int id = (int)dataGridViewDepts.SelectedRows[0].Cells[0].Value;
+                    HttpResponseMessage resultDept = client.GetAsync(ConfigurationManager.AppSettings["Departments"] + $"/{id}").Result;
+                    Department dept = resultDept.Content.ReadAsAsync<Department>().Result;
+                    FillDeptBoxesWithData(dept);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("dept");
+                    MessageBox.Show(ex.Message);
+                    //throw;
+                }
             }
         }
 
